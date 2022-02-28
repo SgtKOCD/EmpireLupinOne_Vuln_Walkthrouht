@@ -1,1 +1,25 @@
 # EmpireLupinOne_Vuln_Walkthrouht
+
+- Önce network taraması yapılarak sızılmak istenilen makinanın IP adresi bulundu.
+- Çıkan port ve IP adresine bakın ve bulduğunuz IP ve port'a bağlanın.
+- Bağlanılan IP ve port içerisinde bulunan robot.txt dosyasına ve sonra ~myfiles' e bakalım. 
+- Ancak ~myfiles doyasına bağlanmadı.
+- ffuf (veya fuzzing toolları) kullanarak Fuzzing işlemi uygulayın, 
+- İşlem sırasında sonra secret diye bir dizin ortaya çıkacaktır,
+- Sonra bu dizine de erişilemeyeceğinden bu dizine de fuzzing işlemi gerçekleştirin,
+- İşlem sonucu mysecret.txt dosyasına rastlıyoruz.
+- İçindeki metni decode edelim (Base58 formatında).
+- Bunun için cyberchef sitesini kullanabilirsiniz online bir decode ve encode hizmeti sunuan bir kaynak.
+- Bir private key olduğuna rastlayacağız bunu makinaya bağlanacağımız zaman kullanacağımızdan bir txt dosyasına kopyalamalıyız.
+- private keylerin aynı zamanda hash ile şifrelenen birer parola anahtarı olacağını göz önünde bulundurarak Ssh2john aracı ile hash’i kırıyoruz.
+- Tabi bu araç bir wordlist kullanıyordu ve o wordlist'e makineye bağlandığımızda ipucularda fasttrack adına rastlıyoruz ki zaten makine adımlarını izlerken ipucularda karşımıza çıkmıştı 
+- Hash kırdığımızda server şifresini buldum.
+- Ssh private key’i id.rsa olarak şifreli gösterdim. Çünkü güvenliksiz olduğu için key ile makinaya erişemedim.
+- Sonra ssh bağlantısı kurdum ve aynı zamanda private key’i kullanabildim. Makinaya’a bağlandım.
+- İpuculardan kullanıcının icex64 olduğunu öğrendiğim için ssh bağlantısının kullanıcı adını bulmakta zorlanmadım. icex kullanıcısına girdim
+- Sonra kullanıcı değiştirerek arsene kullanıcısına girdim, arsene kullanıcısını da home klasöründe gördüm
+- sonra arsene  kullanıcısında heist.py doyasına webbrowser adlı bir dosyanın import edildiğini gördüm daha sonra bu dosyanın root yetkisine sahip olduğunu gördüm
+- içine girerek bin/bash ekledim daha sonra kullanıcı değiştirdim. 
+- Sudo –l yaparak pip klasörünün root yetkisinde çalıştırabileceğimi gördüm. Privilege escalation ile pip dosyasında değişiklik yaparak yetki yükseltme yaptım 
+- root oldum terminalden root dosyasına girdim root.txt dosyasından flag’i aldım.
+- !!! Bir ara aşamaları ekleyeceğim çözüm sırasında ekran resmi almadığım için örnek resimler koyabilirim. !!!
