@@ -4,7 +4,7 @@
 - Çıkan port ve IP adresine bakın ve bulduğunuz IP ve port'a bağlanın.
 - Bağlanılan IP ve port içerisinde bulunan robot.txt dosyasına ve sonra ~myfiles' e bakalım. 
 - Ancak ~myfiles doyasına bağlanmadı.
-- ffuf (veya fuzzing toolları) kullanarak Fuzzing işlemi uygulayın, 
+- ffuf (veya fuzzing araçları) kullanarak Fuzzing işlemi uygulayın, 
 - İşlem sırasında sonra secret diye bir dizin ortaya çıkacaktır,
 - Sonra bu dizine de erişilemeyeceğinden bu dizine de fuzzing işlemi gerçekleştirin,
 - İşlem sonucu mysecret.txt dosyasına rastlıyoruz.
